@@ -1,3 +1,5 @@
+import os
+
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -8,7 +10,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-# Application definition
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -34,7 +36,7 @@ ROOT_URLCONF = 'djangoProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
+        'DIRS': [os.path.join(BASE_DIR, 'templates')]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
