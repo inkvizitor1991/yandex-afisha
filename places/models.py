@@ -3,6 +3,11 @@ from django.db import models
 
 class Places(models.Model):
     title = models.CharField('Название', max_length=200)
+    description_short = models.TextField('Короткое описание', blank=True)
+    description_long = models.TextField('Полное описание', blank=True)
+    lat = models.FloatField(verbose_name='Широта', blank=True, null=True)
+    lon = models.FloatField(verbose_name='Долгота', blank=True, null=True)
+    json_path = models.TextField('Путь к Json', blank=True)
 
     def __str__(self):
         return self.title
