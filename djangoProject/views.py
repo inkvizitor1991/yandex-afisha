@@ -1,5 +1,5 @@
-from django.shortcuts import render
-
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, render
 from places.models import Places
 
 
@@ -30,3 +30,8 @@ def yandex_afisha(request):
 
     context = {"description": place_with_description}
     return render(request, 'index.html', context=context)
+
+
+def places(request, place_id):
+    place = get_object_or_404(Places, pk=place_id)
+    return HttpResponse(place.title)

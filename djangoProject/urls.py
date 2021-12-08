@@ -7,6 +7,7 @@ from djangoProject import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.yandex_afisha),
+    path('places/<int:place_id>/', views.places),
 ]
 
 if settings.DEBUG:
