@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
 from places.models import Places
 
@@ -34,4 +34,18 @@ def yandex_afisha(request):
 
 def places(request, place_id):
     place = get_object_or_404(Places, pk=place_id)
-    return HttpResponse(place.title)
+
+    response = {
+        "title": place.title,
+        "imgs": [place.image.url for place in place.images.all()],
+        "description_short": place.description_short,
+        "description_long": place.description_long,
+        "coordinates": {
+            "lng": place.lon,
+            "lat": place.lat
+        }
+    }
+    return JsonResponse(
+        response,
+        json_dumps_params={'ensure_ascii': False, 'indent': 2}
+    )
