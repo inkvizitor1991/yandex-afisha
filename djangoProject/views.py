@@ -1,5 +1,6 @@
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
+from django.urls import reverse
 from places.models import Places
 
 
@@ -20,7 +21,7 @@ def yandex_afisha(request):
                     "properties": {
                         "title": place.title,
                         "placeId": place.id,
-                        "detailsUrl": place.json_path
+                        "detailsUrl": reverse('places', args=[place.id])
                     }
                 }
             ]
