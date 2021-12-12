@@ -1,16 +1,12 @@
 from django.contrib import admin
 from .models import Places, Images
-
+from adminsortable2.admin import SortableInlineAdminMixin
 from django.utils.html import format_html
 
 
-class ImageInline(admin.TabularInline):
+class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
     model = Images
-    fields = [
-        'title', 'description_short',
-        'description_long', 'lat',
-        'lon', 'show_image'
-    ]
+    fields = ['order', 'image', 'show_image']
     readonly_fields = ['show_image']
 
     def show_image(self, instance):
