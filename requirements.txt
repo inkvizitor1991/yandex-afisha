@@ -1,0 +1,6 @@
+Django==3.2.9
+django_admin_sortable2==1.0.2
+django_tinymce==3.4.0
+python-dotenv==0.19.2
+
+
