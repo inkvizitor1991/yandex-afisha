@@ -18,7 +18,7 @@ class Places(models.Model):
 
 
 class Images(models.Model):
-    places = models.ForeignKey(
+    place = models.ForeignKey(
         Places, on_delete=models.CASCADE,
         related_name='images'
     )

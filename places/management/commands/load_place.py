@@ -26,7 +26,7 @@ class Command(BaseCommand):
             lon = place['coordinates']['lng']
             lat = place['coordinates']['lat']
 
-            places, _ = Places.objects.get_or_create(
+            place, _ = Places.objects.get_or_create(
                 title=title,
                 description_short=description_short,
                 description_long=description_long,
@@ -41,7 +41,7 @@ class Command(BaseCommand):
 
                 images, _ = Images.objects.update_or_create(
                     order=number,
-                    places=places,
+                    places=place,
                     image=image_name,
                 )
                 images.image.save(image_name, ContentFile(response.content),
