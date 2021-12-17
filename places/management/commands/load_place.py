@@ -21,9 +21,11 @@ class Command(BaseCommand):
 
             imgs_urls = place['imgs']
             place, _ = Places.objects.get_or_create(
-                title=place['title'],
-                description_short=place['description_short'],
-                description_long=place['description_long'],
+                defaults={
+                    'title': place['title'],
+                    'description_short': place['description_short'],
+                    'description_long': place['description_long']
+                },
                 lat=place['coordinates']['lat'],
                 lon=place['coordinates']['lng'],
             )
@@ -34,8 +36,8 @@ class Command(BaseCommand):
                 response.raise_for_status()
 
                 images, _ = Images.objects.update_or_create(
-                    order=number,
-                    places=place,
+                    defaults={'order': number},
+                    place=place,
                     image=image_name,
                 )
                 images.image.save(image_name, ContentFile(response.content),
