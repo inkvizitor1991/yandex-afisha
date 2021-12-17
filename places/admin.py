@@ -11,7 +11,7 @@ class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
 
     def show_image(self, instance):
         return format_html(
-            f'<img src="{instance.image.url}" style="max-height: 200px;">')
+            '<img src="{}" style="max-height: 200px;">', instance.image.url)
 
     show_image.short_description = "Image"
 
