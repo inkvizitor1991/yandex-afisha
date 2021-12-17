@@ -50,7 +50,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'djangoProject.wsgi.application'
+WSGI_APPLICATION = 'yandex_afisha.wsgi.application'
 
 DATABASES = {
     'default': {
