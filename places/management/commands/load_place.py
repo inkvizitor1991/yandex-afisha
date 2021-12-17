@@ -19,19 +19,13 @@ class Command(BaseCommand):
             response.raise_for_status()
             place = response.json()
 
-            title = place['title']
             imgs = place['imgs']
-            description_short = place['description_short']
-            description_long = place['description_long']
-            lon = place['coordinates']['lng']
-            lat = place['coordinates']['lat']
-
             place, _ = Places.objects.get_or_create(
-                title=title,
-                description_short=description_short,
-                description_long=description_long,
-                lat=lat,
-                lon=lon,
+                title=place['title'],
+                description_short=place['description_short'],
+                description_long=place['description_long'],
+                lat=place['coordinates']['lat'],
+                lon=place['coordinates']['lng'],
             )
             for number, img in enumerate(imgs, 1):
                 parse_image_url = urlsplit(img)
