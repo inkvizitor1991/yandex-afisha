@@ -17,17 +17,17 @@ class Command(BaseCommand):
         for place in options['load_place']:
             response = requests.get(place)
             response.raise_for_status()
-            place = response.json()
+            place_raw = response.json()
 
-            imgs_urls = place['imgs']
+            imgs_urls = place_raw['imgs']
             place, _ = Places.objects.get_or_create(
                 defaults={
-                    'title': place['title'],
-                    'description_short': place['description_short'],
-                    'description_long': place['description_long']
+                    'title': place_raw['title'],
+                    'description_short': place_raw['description_short'],
+                    'description_long': place_raw['description_long']
                 },
-                lat=place['coordinates']['lat'],
-                lon=place['coordinates']['lng'],
+                lat=place_raw['coordinates']['lat'],
+                lon=place_raw['coordinates']['lng'],
             )
             for number, img_url in enumerate(imgs_urls, 1):
                 image_url_path = urlsplit(img_url).path
