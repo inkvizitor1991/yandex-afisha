@@ -23,7 +23,7 @@ class Images(models.Model):
         related_name='images',
         verbose_name='Место'
     )
-    order = models.PositiveIntegerField('Номер')
+    order = models.PositiveIntegerField('Номер', default=0)
     image = models.ImageField('Картинка')
 
     def __str__(self):
