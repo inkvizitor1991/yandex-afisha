@@ -7,7 +7,7 @@ from places.models import Places
 def yandex_afisha(request):
     places = Places.objects.all()
 
-    place_with_description = []
+    places_with_description = []
     for place in places:
         description = {
             "type": "FeatureCollection",
@@ -27,9 +27,9 @@ def yandex_afisha(request):
             ]
         }
 
-        place_with_description.append(description)
+        places_with_description.append(description)
 
-    context = {"description": place_with_description}
+    context = {"description": places_with_description}
     return render(request, 'index.html', context=context)
 
 
