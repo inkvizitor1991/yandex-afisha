@@ -36,7 +36,7 @@ def yandex_afisha(request):
 def places(request, place_id):
     place = get_object_or_404(Places, pk=place_id)
 
-    response = {
+    context = {
         "title": place.title,
         "imgs": [place.image.url for place in place.images.all()],
         "description_short": place.description_short,
@@ -47,6 +47,6 @@ def places(request, place_id):
         }
     }
     return JsonResponse(
-        response,
+        context,
         json_dumps_params={'ensure_ascii': False, 'indent': 2}
     )
