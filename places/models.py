@@ -20,7 +20,8 @@ class Places(models.Model):
 class Images(models.Model):
     place = models.ForeignKey(
         Places, on_delete=models.CASCADE,
-        related_name='images'
+        related_name='images',
+        verbose_name='Место'
     )
     order = models.PositiveIntegerField('Номер')
     image = models.ImageField('Картинка')
